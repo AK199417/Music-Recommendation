@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const router = express.Router();
 
-const basePath = path.join(__dirname, '../../jukebox-frontend/views');
+const basePath = path.join(__dirname, '../jukebox-frontend/views');
 
 router.get('/', (req, res) => res.sendFile(path.join(basePath, 'landing.html')));
 router.get('/about', (req, res) => res.sendFile(path.join(basePath, 'about.html')));

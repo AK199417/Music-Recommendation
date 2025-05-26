@@ -66,11 +66,19 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 require('./socket/chat')(io);
 
 // Serve frontend assets
-app.use(express.static(path.join(__dirname, '../jukebox-frontend')));
+app.use(express.static(path.join(__dirname, 'jukebox-frontend')));
+console.log('Landing path:', path.join(__dirname, 'jukebox-frontend', 'views', 'landing.html'));
 
 // Start server
 const PORT = process.env.PORT || 3000;
 
+
+app.get('/api/student', (req, res) => {
+  res.json({
+    name: 'Arulrajah Kumaraguruparar',
+    studentId: 's224961108'
+  });
+});
 // if (cluster.isMaster) {
 //   console.log(`Master ${process.pid} is running`);
 
