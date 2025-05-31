@@ -14,17 +14,26 @@ MUSIC-RECOMMENDATION/
 
 # step 1 Clone the repository
 
- git clone https://github.com/AK199417/Music-Recommendation.git
+Create a folder with any name and open it in VS Code.
+
+Then, open the terminal from the top menu in VS Code. By default, it may open in PowerShell, and some commands might not work properly. So, it's recommended to switch the terminal to Git Bash before running the commands below.
+
+git clone https://github.com/AK199417/Music-Recommendation.git
 
 cd Music-Recommendation
 
 # step 2 Switch to your feature branch
 
-git checkout/dockerization
+git checkout feature/dockerization
 
 # step 3 Create environment variables file
 
-Rename .env.example file under jukebox-backend/ to .env 
+Rename the .env.example file located in jukebox-backend/ to .env using the following command (or do it manually):
+
+mv jukebox-backend/.env.example jukebox-backend/.env
+
+
+Add the following keys and replace the values as needed (these values are shared through the OnTrack submission file):
 
 PORT=shared_prot
 MONGO_URL=shared_mongo_connection_string
@@ -35,24 +44,25 @@ SPOTIFY_REDIRECT_URI=shared_url
 FRONTEND_URL=shared_url
 MONGO_SECRET_KEY=shared_key
 
-These values are shared through the OnTrack submission file. Once the .env file is created, please replace the values accordingly.
 
-#  Step 4 Build and run
+#  Step 4 Build and Run the Containers
 
-run the below commands inside Music-Recommendation folder
+Inside the Music-Recommendation folder, run the following commands:
 
 build image - 'docker-compose build'
 run the container - 'docker-compose up'
-to make sure wethere docker is runnning we can use given command ' docker ps'
+
 
 # step 5 access the web
 
-The app will be available at: http://localhost:3000
+Once running, open your browser and go to:
 
-and Student Identity Endpoint
+http://localhost:3000
+
+To check the student identity endpoint, use:
+
 GET http://localhost:3000/api/student
 
 Expected Output:
-{
-  "name": "Arulrajah Kumaraguruparar","studentId": "s224961108"
-}
+
+{"name":"Arulrajah Kumaraguruparar","studentId":"s224961108"}
