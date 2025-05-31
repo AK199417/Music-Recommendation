@@ -33,7 +33,7 @@ Rename the .env.example file located in jukebox-backend/ to .env using the follo
 mv jukebox-backend/.env.example jukebox-backend/.env
 
 
-Add the following keys and replace the values as needed (these values are shared through the OnTrack submission file):
+Add the following keys and replace the values as needed (these values are shared through the OnTrack submission file at the last page unde values heading):
 
 PORT=shared_prot
 MONGO_URL=shared_mongo_connection_string
