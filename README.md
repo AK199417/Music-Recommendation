@@ -22,11 +22,7 @@ git clone https://github.com/AK199417/Music-Recommendation.git
 
 cd Music-Recommendation
 
-# step 2 Switch to your feature branch
-
-git checkout feature/dockerization
-
-# step 3 Create environment variables file
+# step 2 Create environment variables file
 
 Rename the .env.example file located in jukebox-backend/ to .env using the following command (or do it manually):
 
@@ -45,7 +41,7 @@ FRONTEND_URL=shared_url
 MONGO_SECRET_KEY=shared_key
 
 
-#  Step 4 Build and Run the Containers
+#  Step 3 Build and Run the Containers
 
 Inside the Music-Recommendation folder, run the following commands:
 
@@ -53,7 +49,7 @@ build image - 'docker-compose build'
 run the container - 'docker-compose up'
 
 
-# step 5 access the web
+# step 4 access the web
 
 Once running, open your browser and go to:
 
