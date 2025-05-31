@@ -2,16 +2,16 @@ FROM node:18
 
 WORKDIR /app
 
-# ✅ Copy backend package files
+# Copy backend package files
 COPY ./jukebox-backend/package*.json ./
 
 # Install dependencies
 RUN npm install
 
-# ✅ Copy backend source code
+# Copy backend source code
 COPY ./jukebox-backend .
 
-# ✅ Copy frontend folder into the container
+# Copy frontend folder into the container
 COPY ./jukebox-frontend ./jukebox-frontend
 
 # Install PM2 globally
