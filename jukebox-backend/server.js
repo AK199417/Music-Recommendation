@@ -36,9 +36,13 @@ mongoose.connect(process.env.MONGO_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-mongoose.connection.on('connected', () => {
+
+mongoose.connection.on('connected', async () => {
   console.log('Connected to MongoDB Atlas!');
+  const createAdminUser = require('./adminSetup');
+  await createAdminUser();
 });
+
 mongoose.connection.on('error', (err) => {
   console.error('MongoDB connection error:', err);
 });
