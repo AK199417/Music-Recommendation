@@ -38,6 +38,10 @@ SPOTIFY_CLIENT_ID=shared_ID
 SPOTIFY_CLIENT_SECRET=shared_secret
 SPOTIFY_REDIRECT_URI=shared_url
 FRONTEND_URL=shared_url
+AWS_ACCESS_KEY_ID=shared_aws_key_id
+AWS_SECRET_ACCESS_KEY=shared_aws_access_key
+AWS_REGION=shared_region
+
 MONGO_SECRET_KEY=shared_key
 
 

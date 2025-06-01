@@ -6,11 +6,10 @@ const bucketName = 'deakinsarul'; // Your fixed bucket name
 
 async function getS3Client() {
   if (!s3) {
-    const creds = await loadAwsCredentials();
     s3 = new AWS.S3({
-      accessKeyId: creds.accessKeyId,
-      secretAccessKey: creds.secretAccessKey,
-      region: creds.region
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+      region: process.env.AWS_REGION || 'us-east-1' // Default fallback region
     });
   }
   return s3;
