@@ -19,11 +19,11 @@ const server = http.createServer(app);
 const socketManager = require('./socket');
 const io = socketManager.init(server); // Automatically hooks in collabPlaylist.js
 
-// Middleware order matters! ✅
+// Middleware order matters! 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser()); // ✅ Apply cookie-parser before session
+app.use(cookieParser()); // Apply cookie-parser before session
 app.use(session({
   secret: 'secret-key',
   resave: false,
@@ -32,20 +32,51 @@ app.use(session({
 
 
 // MongoDB
-mongoose.connect(process.env.MONGO_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+const dockerUri = process.env.MONGO_URL;
+const atlasUri = process.env.MONGO_ATLAS_URI;
 
-mongoose.connection.on('connected', async () => {
-  console.log('Connected to MongoDB Atlas!');
+let usingCloud = false;
+
+const connectMongo = async (uri, label) => {
+  try {
+    await mongoose.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    });
+    console.log(`Connected to ${label} MongoDB`);
+    return true;
+  } catch (err) {
+    console.error(`Failed to connect to ${label} MongoDB:`, err.message);
+    return false;
+  }
+};
+
+const initMongoConnection = async () => {
+  const connected = await connectMongo(dockerUri, "Docker");
+
+  if (!connected) {
+    const fallbackConnected = await connectMongo(atlasUri, "Cloud");
+    if (fallbackConnected) usingCloud = true;
+  }
+
   const createAdminUser = require('./adminSetup');
   await createAdminUser();
+};
+
+// Handle disconnections dynamically
+mongoose.connection.on('disconnected', async () => {
+  console.warn('MongoDB disconnected!');
+
+  if (!usingCloud) {
+    console.log('Attempting to connect to MongoDB Atlas...');
+    const fallbackConnected = await connectMongo(atlasUri, "Cloud");
+
+    if (fallbackConnected) usingCloud = true;
+    else console.error('All reconnection attempts failed. Retrying in 10 seconds...');
+  }
 });
 
-mongoose.connection.on('error', (err) => {
-  console.error('MongoDB connection error:', err);
-});
+initMongoConnection();
 
 // API Routes (After session & cookieParser!)
 const authRoutes = require('./routes/authRoutes');

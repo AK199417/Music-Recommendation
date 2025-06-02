@@ -2,14 +2,14 @@
 
 # Project Structure
 
-MUSIC-RECOMMENDATION/
-├── jukebox-backend/        # Node.js backend (APIs, Socket.IO, MongoDB)
-├── jukebox-frontend/       # Frontend (HTML, JS, Materialize CSS)
-├── docker-compose.yml      # Docker configuration for backend and frontend
-├── .gitignore
-├── contribs.md
-├── package-lock.json
-└── README.md               # This file
+MUSIC-RECOMMENDATION/<br>
+├── jukebox-backend/       <br> # Node.js backend (APIs, Socket.IO, MongoDB)
+├── jukebox-frontend/    <br>   # Frontend (HTML, JS, Materialize CSS)
+├── docker-compose.yml   <br>   # Docker configuration for backend and frontend
+├── .gitignore<br>
+├── contribs.md<br>
+├── package-lock.json<br>
+└── README.md             <br>  # This file
 
 
 # step 1 Clone the repository
@@ -31,27 +31,30 @@ mv jukebox-backend/.env.example jukebox-backend/.env
 
 Add the following keys and replace the values as needed (these values are shared through the OnTrack submission file at the last page unde values heading):
 
-PORT=shared_prot
-MONGO_URL=shared_mongo_connection_string
-JWT_SECRET=shared_secret_key
-SPOTIFY_CLIENT_ID=shared_ID
-SPOTIFY_CLIENT_SECRET=shared_secret
-SPOTIFY_REDIRECT_URI=shared_url
-FRONTEND_URL=shared_url
-AWS_ACCESS_KEY_ID=shared_aws_key_id
-AWS_SECRET_ACCESS_KEY=shared_aws_access_key
-AWS_REGION=shared_region
-MONGO_SECRET_KEY=shared_key
-ADMIN_EMAIL=provide_any_valid_email
-ADMIN_PASSWORD=provide_any_password
+
+PORT=shared_prot<br>
+MONGO_URL=shared_mongo_connection_string<br>
+MONGO_ATLAS_URI=cloud_monog_connection_string<br>
+JWT_SECRET=shared_secret_key<br>
+SPOTIFY_CLIENT_ID=shared_ID<br>
+SPOTIFY_CLIENT_SECRET=shared_secret<br>
+SPOTIFY_REDIRECT_URI=shared_url<br>
+FRONTEND_URL=shared_url<br>
+AWS_ACCESS_KEY_ID=shared_aws_key_id<br>
+AWS_SECRET_ACCESS_KEY=shared_aws_access_key<br>
+AWS_REGION=shared_region<br>
+MONGO_SECRET_KEY=shared_key<br>
+ADMIN_EMAIL=provide_any_valid_email<br>
+ADMIN_PASSWORD=provide_any_password<br>
 
 
 #  Step 3 Build and Run the Containers
 
 Inside the Music-Recommendation folder, run the following commands:
 
-build image - 'docker-compose build'
-run the container - 'docker-compose up'
+removing all images which may can cause conflict in new build as well 'docker system prune -a --volumes -f'<br>
+build image - 'docker-compose build'<br>
+run the container - 'docker-compose up'<br>
 
 
 # step 4 access the web
